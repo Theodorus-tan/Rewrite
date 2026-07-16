@@ -1,0 +1,229 @@
+@import "tailwindcss";
+
+/* ============================================
+   智谱·清痕 · 设计系统 Token
+   继承智谱知研 (vibe-research) 的 Notion 色板
+   + Zhipu 白紫黑品牌色
+   ============================================ */
+
+@theme {
+  /* ── Notion 色板（继承自智谱知研） ── */
+  --color-notion-bg: #ffffff;
+  --color-notion-sidebar: #f7f7f5;
+  --color-notion-sidebar-hover: #ebebea;
+  --color-notion-border: #e8e8e5;
+  --color-notion-text: #37352f;
+  --color-notion-text-secondary: #6b6b6b;
+  --color-notion-text-tertiary: #9b9a97;
+  --color-notion-accent: #2eaadc;
+  --color-notion-accent-light: #e8f4f8;
+  --color-notion-red: #eb5757;
+  --color-notion-orange: #fa8c16;
+  --color-notion-yellow: #dfab01;
+  --color-notion-green: #0f7b0f;
+  --color-notion-blue: #2eaadc;
+  --color-notion-purple: #9065b0;
+  --color-notion-pink: #e255a1;
+
+  /* ── Zhipu 白紫黑品牌色 ── */
+  --color-zhipu-50: #f6f1ff;
+  --color-zhipu-100: #ede6ff;
+  --color-zhipu-200: #d9cef9;
+  --color-zhipu-400: #9b7fd4;
+  --color-zhipu-600: #5c4d95;
+  --color-zhipu-800: #2e245f;
+  --color-zhipu-900: #1a1240;
+
+  /* ── 功能色 ── */
+  --color-surface: #ffffff;
+  --color-page-bg: #f6f7fb;
+
+  /* ── 阴影 ── */
+  --shadow-notion: 0 1px 3px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.03);
+  --shadow-notion-hover: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.03);
+  --shadow-notion-modal: 0 8px 24px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04);
+
+  /* ── 圆角 ── */
+  --radius-card: 24px;
+  --radius-panel: 28px;
+
+  /* ── 字体 ── */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI Variable", "Segoe UI",
+    system-ui, Ubuntu, Cantarell, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "SF Mono", "Cascadia Code", "JetBrains Mono", "Fira Code", monospace;
+
+  /* ── 动画 ── */
+  --animate-fade-in-up: fade-in-up 0.3s ease-out forwards;
+  --animate-fade-in: fade-in 0.2s ease-out forwards;
+  --animate-scale-in: scale-in 0.2s ease-out forwards;
+  --animate-hero-drift-a: hero-drift-a 16s ease-in-out infinite;
+  --animate-hero-drift-b: hero-drift-b 18s ease-in-out infinite;
+  --animate-hero-type: hero-type 5.6s steps(39, end) infinite;
+  --animate-hero-caret: hero-caret 0.9s step-end infinite;
+}
+
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes scale-in {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes hero-drift-a {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-18px, 10px, 0) scale(1.06); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes hero-drift-b {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(20px, -12px, 0) scale(1.04); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes hero-type {
+  0% { width: 0; }
+  12% { width: 0; }
+  58% { width: var(--hero-typing-width, 0px); }
+  61% { width: var(--hero-typing-width, 0px); }
+  100% { width: 0; }
+}
+@keyframes hero-caret {
+  0%, 49% { border-color: rgba(123, 160, 255, 0.95); }
+  50%, 100% { border-color: transparent; }
+}
+
+/* ── 全局重置 & 基础 ── */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-notion-text);
+  background: var(--color-page-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(46, 170, 220, 0.2);
+}
+
+/* ── Notion 风格滚动条 ── */
+.notion-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.notion-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.notion-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--color-notion-border);
+}
+.notion-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-notion-text-tertiary);
+}
+
+/* ── 工具类 ── */
+.css-tooltip {
+  position: relative;
+}
+.css-tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 6px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #1f2937;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.1s;
+  z-index: 50;
+}
+.css-tooltip:hover::after {
+  opacity: 1;
+}
+
+.hero-display {
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  line-height: 1.12;
+  font-weight: 615;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.hero-accent {
+  font-size: clamp(0.9rem, 1.35vw, 1.08rem);
+  line-height: 1.2;
+  font-weight: 560;
+  letter-spacing: -0.01em;
+  font-style: italic;
+  background-image: linear-gradient(90deg, #78b7ff 0%, #93a4ff 32%, #a47dff 66%, #ff8cc9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 18px rgba(157, 166, 255, 0.1);
+}
+
+.hero-typing {
+  display: inline-block;
+  width: 0;
+  max-width: min(100%, var(--hero-typing-width, 100%));
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid rgba(123, 160, 255, 0.95);
+  animation:
+    hero-type 5.2s steps(var(--hero-typing-steps, 43), end) infinite,
+    var(--animate-hero-caret);
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(68px);
+  opacity: 0.95;
+  will-change: transform;
+}
+
+.hero-orb-a {
+  right: -56px;
+  top: -26px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(144, 126, 228, 0.58) 0%, rgba(111, 166, 240, 0.22) 42%, transparent 72%);
+  animation: var(--animate-hero-drift-a);
+}
+
+.hero-orb-b {
+  left: 18%;
+  top: 24px;
+  width: 176px;
+  height: 176px;
+  background: radial-gradient(circle, rgba(171, 193, 255, 0.32) 0%, rgba(196, 172, 247, 0.36) 46%, transparent 72%);
+  animation: var(--animate-hero-drift-b);
+}
+
+.hero-grid-mask {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.32) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.26) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.12), transparent 72%);
+  opacity: 0.18;
+}

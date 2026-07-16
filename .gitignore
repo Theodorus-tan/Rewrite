@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Node / Vite
+app/node_modules/
+
+# Tauri / Rust build output
+app/src-tauri/target/
+
+# Generated runtime outputs & personal data
+finish/
+origin/
+*.dmg
+*.png
+*.jpg
+*.jpeg
+
+# Secrets & environment
+.env
+.env.*
+
+# Editor / local config
+.vscode/
+.idea/
+.agents/
+.codex/
+dev-doc/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# GitHub metadata
+.github/
